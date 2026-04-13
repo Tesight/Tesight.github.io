@@ -1,0 +1,3 @@
+:HL["/_next/static/chunks/08-ckqgrwvj5a.css","style"]
+:HL["/static/assets/77a7c38f8502af1dfa1eda5b.webp","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"260413-first-page","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"6e8sXYuF2B2MPOziHgNLA"}
