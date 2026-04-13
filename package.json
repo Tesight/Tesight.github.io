@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"npx velite --watch\" \"next dev\"",
-    "build": "npx velite && next build",
+    "build": "npx velite --clean && next build",
     "velite": "velite",
     "start": "next start",
     "lint": "eslint"
