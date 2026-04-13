@@ -2,7 +2,6 @@ import Link from "next/link";
 import { posts } from "@velite";
 
 export default function Home() {
-  // Velite 的数据已经是解析好的数组
   const sortedPosts = posts.sort(
     (a, b) =>
       new Date(b.date || "").getTime() - new Date(a.date || "").getTime(),
@@ -17,7 +16,6 @@ export default function Home() {
       <div className="space-y-12">
         {sortedPosts.map((post) => (
           <article key={post.slug} className="group flex flex-col items-start">
-            {/* 这里的 date 需要你在 velite.config.ts 的 schema 里定义了才会出现 */}
             <time className="text-sm text-gray-400 mb-2">
               {post.date || "2026-04-13"}
             </time>
@@ -31,7 +29,6 @@ export default function Home() {
               </Link>
             </h2>
 
-            {/* 这里的 summary 同理，需在 schema 中定义 */}
             {post.summary && (
               <p className="text-gray-600 mt-3 line-clamp-2 leading-relaxed">
                 {post.summary}

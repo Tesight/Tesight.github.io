@@ -2,7 +2,6 @@ import Link from "next/link";
 import { posts } from "@velite";
 
 export default function BlogListPage() {
-  // 按照日期倒序排列（如果有 date 字段的话）
   const sortedPosts = posts.sort((a, b) => b.slug.localeCompare(a.slug));
 
   return (
@@ -17,11 +16,11 @@ export default function BlogListPage() {
             >
               {post.title}
             </Link>
-            {post.metadata?.readingTime && (
+            {/* {post.metadata?.readingTime && (
               <p className="text-sm text-gray-500 mt-1">
                 阅读时间：{post.metadata.readingTime} 分钟
               </p>
-            )}
+            )} */}
           </li>
         ))}
       </ul>
