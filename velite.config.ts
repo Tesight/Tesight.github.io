@@ -1,0 +1,24 @@
+import { defineConfig, s } from "velite";
+
+export default defineConfig({
+  collections: {
+    posts: {
+      name: "Post",
+      pattern: "blog/**/page.mdx",
+      schema: s.object({
+        title: s.string(),
+        date: s.string().optional(),
+        summary: s.string().optional(),
+        slug: s.path().transform((path) => path.split("/")[1]),
+        content: s.mdx(),
+      }),
+    },
+  },
+  output: {
+    data: ".velite",
+    assets: "public/static/assets",
+    base: "/static/assets/",
+    name: "[hash:24].[ext]",
+    clean: true,
+  },
+});
