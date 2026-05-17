@@ -2,7 +2,6 @@ import { posts } from "@velite";
 import { notFound } from "next/navigation";
 import * as runtime from "react/jsx-runtime";
 
-// MDX 渲染组件：将字符串代码转为 React 组件
 const MDXContent = ({ code }: { code: string }) => {
   const Component = new Function(code)({ ...runtime }).default;
   return <Component />;
@@ -13,7 +12,6 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  // Next.js 15 必须 await params
   const { slug } = await params;
 
   const post = posts.find((p) => p.slug === slug);
@@ -21,19 +19,30 @@ export default async function PostPage({
   if (!post) notFound();
 
   return (
-    <article className="mx-auto max-w-2xl px-6 py-12 prose prose-slate dark:prose-invert">
-      <header className="mb-8">
-        <h1 className="mb-2">{post.title}</h1>
-        {/* 如果你有 summary 字段也可以在这里渲染 */}
+    <article className="rag-article mx-auto max-w-3xl rounded-lg border border-[#ded6c7] bg-[#fffdf8]/95 px-5 py-8 shadow-[0_24px_70px_rgba(74,60,38,0.12)] sm:px-10 sm:py-12 lg:max-w-4xl">
+      <header className="mb-10 border-b border-[#ded6c7] pb-8">
+        {post.date && (
+          <time className="mb-4 block font-sans text-sm font-semibold tracking-[0.16em] text-[#0f766e] uppercase">
+            {post.date}
+          </time>
+        )}
+        <h1 className="mb-4 font-sans text-4xl leading-tight font-black tracking-normal text-[#101827] sm:text-5xl">
+          {post.title}
+        </h1>
+        {post.summary && (
+          <p className="max-w-2xl text-lg leading-8 text-[#435166]">
+            {post.summary}
+          </p>
+        )}
       </header>
 
-      {/* 渲染正文内容，此时图片路径已自动解析为 /static/[hash].webp */}
-      <MDXContent code={post.content} />
+      <div className="prose prose-lg max-w-none prose-headings:font-sans prose-headings:tracking-normal prose-headings:text-[#101827] prose-p:text-[#18212f] prose-li:text-[#18212f] prose-strong:text-[#101827] prose-code:text-[#0f4c45] prose-pre:bg-[#1e293b]">
+        <MDXContent code={post.content} />
+      </div>
     </article>
   );
 }
 
-// 静态导出必须生成路径
 export async function generateStaticParams() {
   return posts.map((post) => ({
     slug: post.slug,
